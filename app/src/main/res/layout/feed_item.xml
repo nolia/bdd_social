@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="?selectableItemBackground"
+    >
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        tools:text="Uncle Bob"
+        />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        tools:text="Quick red fox jumps over a lazy dog. You can eat this french toast and drink a cup of tea."
+        />
+
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        tools:text="March 21, 2018"
+        />
+
+
+
+</LinearLayout>

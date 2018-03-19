@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        style="@style/Label"
+        android:text="@string/login_hint" />
+
+    <EditText
+        android:id="@+id/loginEditText"
+        style="@style/LoginInput"
+        android:hint="@string/login_hint"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        style="@style/Label"
+        android:layout_marginTop="8dp"
+        android:text="@string/password_hint" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        style="@style/LoginInput"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword" />
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:minWidth="220dp"
+        android:text="@string/login_hint" />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+</android.widget.LinearLayout>

@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "email": "1@2.com",
+      "name": "User 1-2",
+      "password": "1"
+    },
+    {
+      "email": "user123@example.com",
+      "name": "First User",
+      "password": "123456"
+    },
+    {
+      "email": "user@example.com",
+      "name": "User Example",
+      "password": "123456"
+    }
+  ],
+  "messages": [
+    {
+      "author": {
+        "email": "bob@uncle.com",
+        "name": "Uncle Bob"
+      },
+      "text": "Write only CLEAN architecture!!!"
+    },
+    {
+      "author": {
+        "email": "bdd@example.com",
+        "name": "BDD Enthusiast"
+      },
+      "text": "Hey! We are here to listen about BDD!!! What's up?!!!"
+    },
+    {
+      "author": {
+        "email": "tdd@example.com",
+        "name": "Tdd Enthusiast"
+      },
+      "text": "And about TDD as well."
+    }
+  ],
+  "newMessages": [
+    {
+      "author": {
+        "email": "cat@example.com",
+        "name": "Cat"
+      },
+      "text": "Meow!"
+    },
+    {
+      "author": {
+        "email": "cat@example.com",
+        "name": "Cat"
+      },
+      "text": "Meow!"
+    }
+  ]
+}
