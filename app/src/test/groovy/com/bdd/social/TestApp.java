@@ -14,7 +14,7 @@ import org.codejargon.feather.Feather;
  */
 public class TestApp extends App {
 
-    private Feather feather;
+    Feather feather;
 
     // Api interface.
     public ApiInterface apiInterface;

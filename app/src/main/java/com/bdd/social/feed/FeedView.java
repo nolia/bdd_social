@@ -15,4 +15,10 @@ public interface FeedView {
     void showProgress(boolean progress);
 
     Observable<String> messageSentObservable();
+
+    void showError(Throwable throwable);
+
+    void disableSend(boolean disable);
+
+    void resetInput();
 }

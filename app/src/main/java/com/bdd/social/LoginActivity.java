@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -20,10 +21,11 @@ import io.reactivex.Observable;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    private EditText loginEditText;
-    private EditText passwordEditText;
-    private View loginButton;
-    private ProgressBar progressBar;
+    EditText loginEditText;
+    EditText passwordEditText;
+
+    View loginButton;
+    ProgressBar progressBar;
 
     @Inject
     LoginPresenter loginPresenter;
@@ -69,18 +71,38 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public Observable<View> getOnLoginClickObservable() {
-        return RxView.clicks(loginButton).map(o -> loginButton);
+        return RxView.clicks(loginButton)
+                .map(o -> loginButton)
+                .filter(view -> validateInputs());
+    }
+
+    private boolean validateInputs() {
+        final String login = loginEditText.getText().toString().trim();
+        final String password = passwordEditText.getText().toString().trim();
+
+        if (TextUtils.isEmpty(login)) {
+            Toast.makeText(this, "Login may not be empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Password may not be empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
     @Override
     public void goToNextScreen() {
-        Toast.makeText(this, "HOORRAY!!!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this, FeedActivity.class));
+        finish();
     }
 
     @Override
     public void showError(Throwable throwable) {
         Log.e("Login", "error!!!", throwable);
-        Toast.makeText(this, "Error during login!", Toast.LENGTH_SHORT).show();
+        final String throwableMessage = throwable.getMessage();
+        final String message = !TextUtils.isEmpty(throwableMessage) ? throwableMessage : "Error during login!";
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
