@@ -3,7 +3,6 @@ package com.bdd.social;
 import android.app.Application;
 
 import com.bdd.social.di.DiModule;
-import com.bdd.social.di.PresentersModule;
 
 import org.codejargon.feather.Feather;
 
@@ -15,7 +14,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        feather = Feather.with(new DiModule(this), new PresentersModule());
+        feather = Feather.with(new DiModule(this));
     }
 
     public Feather getFeather() {

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.bdd.social.R;
 import com.bdd.social.api.ApiInterface;
 import com.bdd.social.api.LazyServer;
+import com.bdd.social.feed.FeedPresenter;
 import com.bdd.social.login.LoginPresenter;
 import com.google.gson.Gson;
 
@@ -31,5 +32,15 @@ public class DiModule {
     public ApiInterface provideApiInterface() {
         // Use Retrofit, etc. in real project.
         return lazyServer;
+    }
+
+    @Provides
+    public LoginPresenter loginPresenter(ApiInterface apiInterface) {
+        return new LoginPresenter(apiInterface);
+    }
+
+    @Provides
+    public FeedPresenter feedPresenter(ApiInterface apiInterface) {
+        return new FeedPresenter(apiInterface);
     }
 }

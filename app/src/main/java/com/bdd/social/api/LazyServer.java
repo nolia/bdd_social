@@ -37,7 +37,7 @@ public class LazyServer implements ApiInterface {
     private void startSendingNewMessages() {
         Observable.fromIterable(newMessages)
                 .flatMap(message -> randomDelay().map(t -> message))
-                .subscribe(newMessageChannel);
+                .subscribe(newMessageChannel::onNext);
     }
 
     @Override
@@ -55,13 +55,13 @@ public class LazyServer implements ApiInterface {
         return delay()
                 .map(t -> {
                     final Message message = new Message(user, text);
-                    delay().subscribe(rt -> newMessageChannel.onNext(message));
+                    newMessageChannel.onNext(message);
                     return message;
                 });
     }
 
     private Observable<Long> randomDelay() {
-        return Observable.timer(10 + random.nextInt(30), TimeUnit.MILLISECONDS);
+        return Observable.timer(10 + random.nextInt(10), TimeUnit.SECONDS);
     }
 
     private Observable<Long> delay() {
