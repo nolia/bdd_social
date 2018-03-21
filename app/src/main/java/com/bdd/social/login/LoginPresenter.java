@@ -2,6 +2,7 @@ package com.bdd.social.login;
 
 import com.bdd.social.api.ApiInterface;
 import com.bdd.social.base.BasePresenter;
+import com.bdd.social.di.AccountManager;
 import com.bdd.social.model.User;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -9,25 +10,28 @@ import io.reactivex.disposables.Disposable;
 
 public class LoginPresenter extends BasePresenter<LoginView> {
 
-    public LoginPresenter(ApiInterface apiInterface) {
+    private final AccountManager accountManager;
+
+    public LoginPresenter(ApiInterface apiInterface, AccountManager accountManager) {
         super(apiInterface);
+        this.accountManager = accountManager;
     }
 
     @Override
     protected void onViewAttached(LoginView loginView) {
         loginView.getOnLoginClickObservable()
                 .subscribe(
-                        view -> perform(loginView)
+                        view -> performLogin(loginView)
                 );
 
     }
 
-    private Disposable perform(LoginView loginView) {
+    private Disposable performLogin(LoginView loginView) {
         return apiInterface.login(loginView.getLogin(), loginView.getPassword())
                 .takeUntil(detachSubject)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> loginView.showProgress(true))
-                .doOnEach(notification -> loginView.showProgress(false))
+                .doOnTerminate(() -> loginView.showProgress(false))
                 .subscribe(
                         user -> {
                             saveUser(user);
@@ -38,7 +42,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     }
 
     private void saveUser(User user) {
-
+        accountManager.setUser(user);
     }
 
 

@@ -27,6 +27,12 @@ public class DiModule {
         lazyServer = gson.fromJson(new InputStreamReader(stream), LazyServer.class);
     }
 
+    @Singleton
+    @Provides
+    public AccountManager accountManager() {
+        return new AccountManager();
+    }
+
     @Provides
     @Singleton
     public ApiInterface provideApiInterface() {
@@ -35,8 +41,8 @@ public class DiModule {
     }
 
     @Provides
-    public LoginPresenter loginPresenter(ApiInterface apiInterface) {
-        return new LoginPresenter(apiInterface);
+    public LoginPresenter loginPresenter(ApiInterface apiInterface, AccountManager accountManager) {
+        return new LoginPresenter(apiInterface, accountManager);
     }
 
     @Provides

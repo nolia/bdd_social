@@ -3,6 +3,7 @@ package com.bdd.social;
 import android.content.Context;
 
 import com.bdd.social.api.ApiInterface;
+import com.bdd.social.di.AccountManager;
 import com.bdd.social.di.DiModule;
 import com.bdd.social.feed.FeedPresenter;
 import com.bdd.social.login.LoginPresenter;
@@ -14,7 +15,7 @@ import org.codejargon.feather.Feather;
  */
 public class TestApp extends App {
 
-    private Feather feather;
+    public Feather feather;
 
     // Api interface.
     public ApiInterface apiInterface;
@@ -39,8 +40,8 @@ public class TestApp extends App {
         }
 
         @Override
-        public LoginPresenter loginPresenter(ApiInterface apiInterface) {
-            return super.loginPresenter(apiInterface);
+        public LoginPresenter loginPresenter(ApiInterface apiInterface, AccountManager accountManager) {
+            return super.loginPresenter(apiInterface, accountManager);
         }
 
         @Override
